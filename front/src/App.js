@@ -41,7 +41,7 @@ function App() {
     if (bandera) {
       window.alert('No se admiten Personajes Repetidos');
     } else {
-      fetch(`http://localhost:3001/rickandmorty/character/${character}`)
+      fetch(`http://localhost:3001/rickandmorty/onsearch/${character}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.name) {

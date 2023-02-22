@@ -6,7 +6,7 @@ export default function Detail() {
   const [character, setCharacter] = useState('');
   const navegar = useNavigate();
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+    fetch(`http://localhost:3001/rickandmorty/detail/${detailId}`)
       .then((response) => response.json())
       .then((char) => {
         if (char.name) {
@@ -25,9 +25,9 @@ export default function Detail() {
       <button onClick={() => navegar('/home')}>Atras</button>
       <h1>Nombre: {character.name}</h1>
       <h2>Estatus: {character.status}</h2>
-      <h2>Especie: {character.specie}</h2>
+      <h2>Especie: {character.species}</h2>
       <h2>Genero: {character.gender}</h2>
-      <h2>Origen: {character.origin?.name}</h2>
+      <h2>Origen: {character.origin}</h2>
       <img src={character.image} />
     </div>
   );

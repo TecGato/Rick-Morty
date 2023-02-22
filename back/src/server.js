@@ -1,22 +1,19 @@
 const http = require('http');
-const data = require('./utils/data.js');
+const { getCharById } = require('./controllers/getCharById');
+const { getCharDetail } = require('./controllers/getCharDetail');
+
 const PORT = 3001;
 
 http
   .createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    if (req.url.includes('rickandmorty/character')) {
+    if (req.url.includes('onsearch')) {
       const id = req.url.split('/').at(-1);
-      const character = data.find((elemento) => elemento.id === Number(id));
-      character
-        ? res
-            .writeHead(200, { 'Content-type': 'application/json' })
-            .end(JSON.stringify(character))
-        : res
-            .writeHead(200, { 'Content-type': 'text/plain' })
-            .end('Personaje aun no creado');
-
-      return;
+      getCharById(res, id);
+    }
+    if (req.url.includes('detail')) {
+      const id = req.url.split('/').at(-1);
+      getCharDetail(res, id);
     }
   })
   .listen(PORT, 'localhost');
