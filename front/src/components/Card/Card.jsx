@@ -13,7 +13,13 @@ function Card(props) {
       props.deleteFavorites(props.id);
     } else {
       setIsFav(true);
-      props.addMyFavorites(props);
+      props.addMyFavorites({
+        name: props.name,
+        species: props.species,
+        gender: props.gender,
+        id: props.id,
+        image: props.image,
+      });
     }
   };
 

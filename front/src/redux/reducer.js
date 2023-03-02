@@ -6,13 +6,17 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADDMYFAVORITES':
+      console.log(state);
       return {
-        ...state,
         myFavorites: [...state.allCharacters, action.payload],
         allCharacters: [...state.allCharacters, action.payload],
       };
     case 'DELETEFAVORITES':
+      console.log(state);
       return {
+        allCharacters: state.allCharacters.filter(
+          (elemento) => elemento.id !== action.payload
+        ),
         myFavorites: state.myFavorites.filter(
           (elemento) => elemento.id !== action.payload
         ),
@@ -39,6 +43,7 @@ const reducer = (state = initialState, action) => {
       };
 
     default:
+      console.log(state);
       return { ...state };
   }
 };
