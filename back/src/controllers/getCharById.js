@@ -1,19 +1,10 @@
-const URL = 'https://rickandmortyapi.com/api/character/';
-const axios = require('axios');
+const { Favorite } = require('../DB_connection');
 
 const getCharById = async (req, res) => {
-  const { id } = req.params;
   try {
-    const response = await axios(URL + id);
-    const data = response.data;
-    const obj = {
-      id: data.id,
-      name: data.name,
-      species: data.species,
-      image: data.image,
-      gender: data.gender,
-    };
-    return res.status(200).json(obj);
+    const allchar = await Favorite.findAll();
+    if (!allchar) throw new Error('no hay favoritos');
+    return res.status(200).json(allchar);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

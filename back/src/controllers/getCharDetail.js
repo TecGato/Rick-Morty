@@ -1,20 +1,13 @@
-const URL = 'https://rickandmortyapi.com/api/character/';
-const axios = require('axios');
+const { Favorite } = require('../DB_connection');
 
 const getCharByDetail = async (req, res) => {
   const { id } = req.params;
   try {
-    const response = await axios(URL + id);
-    const data = response.data;
-    const obj = {
-      id: data.id,
-      name: data.name,
-      species: data.species,
-      image: data.image,
-      gender: data.gender,
-      origin: data.origin.name,
-    };
-    return res.status(200).json(obj);
+    if (!id) throw new Error('no se recibio Id');
+    const deletedChar = await Favorite.findByPk(id);
+    if (!deletedChar) throw new Error('Id no encontrado para ser eliminado');
+    await deletedChar.destroy();
+    return res.status(200).json(deletedChar);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

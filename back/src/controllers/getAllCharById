@@ -1,0 +1,14 @@
+const { Character } = require('../DB_connection');
+
+const getAllCharById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const allchar = await Character.findByPk(id);
+    if (!allchar) throw new Error('no existe personaje con ese ID');
+    return res.status(200).json(allchar);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getAllCharById };
