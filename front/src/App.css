@@ -3,7 +3,7 @@
 }
 
 .body {
-  background-image: url('C:\Users\Franc\OneDrive\Desktop\rick_and_morty\front\src\components\Img\fondoweb_rick_and_morty.jpg');
+  background-image: url('./components/Img/homeworkRAM.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;

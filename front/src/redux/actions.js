@@ -19,6 +19,17 @@ export function addMyFavorites(character) {
   };
 }
 
+// export function getAllFavorite() {
+//   return async () => {
+//     const response = await axios.get('http://localhost:3001/rickandmorty/fav');
+//     const data = response.data;
+//     return dispatch({
+//       type: 'GETALLFAVORITES',
+//       payload: data,
+//     });
+//   };
+// }
+
 export function deleteFavorites(id) {
   // return {
   //   type: 'DELETEFAVORITES',
